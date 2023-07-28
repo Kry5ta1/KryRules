@@ -30,12 +30,10 @@ function GetCookie() {
   if ($request.url.indexOf('queryUserInfoSeven') > -1) {
     const cookie = $request.headers.Cookie;
     $.log($request.headers);
-    if (cookie) {
-      if ($iCloud.writeFile(cookie, "10010/cookie.txt")) {
-        $.log("Cookie 写入OK");
-      } else {
-        $.log("Cookie 写入NO");
-      }
+    if ($iCloud.writeFile(cookie, "10010/cookie.txt")) {
+      $.log("Cookie 写入OK");
+    } else {
+      $.log("Cookie 写入NO");
     }
   }
 }
