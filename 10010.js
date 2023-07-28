@@ -22,7 +22,7 @@ http-request https:\/\/m\.client\.10010\.com\/mobileserviceimportant\/smart\/sma
 
 [rewrite_local]
 https:\/\/m\.client\.10010\.com\/mobileserviceimportant\/smart\/smartwisdomCommon  url script-request-header https://raw.githubusercontent.com/dompling/Script/master/10010/index.js
-
+https:\/\/m\.client\.10010\.com\/mobileserviceimportant\/home\/queryUserInfoSeven  url script-request-header https://raw.githubusercontent.com/dompling/Script/master/10010/index.js
  */
 
 const APIKey = 'YaYa_10010';
@@ -30,7 +30,7 @@ $ = new API(APIKey, true);
 if ($request) GetCookie();
 
 function GetCookie() {
-  if ($request.url.indexOf('smartwisdomCommon') > -1) {
+  if ($request.url.indexOf('queryUserInfoSeven') > -1) {
     const cookie = $request.headers.Cookie;
     $.log($request.headers);
     if (cookie && cookie.indexOf('JSESSIONID') > -1) {
