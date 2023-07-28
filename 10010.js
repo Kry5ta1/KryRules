@@ -32,9 +32,9 @@ function GetCookie() {
     $.log($request.headers);
     if (cookie && cookie.indexOf('JSESSIONID') > -1) {
       if ($iCloud.writeFile(cookie, "10010/cookie.txt")) {
-        console.log("Cookie 写入OK");
+        $.log("Cookie 写入OK");
       } else {
-        console.log("Cookie 写入NO");
+        $.log("Cookie 写入NO");
       }
     }
   }
