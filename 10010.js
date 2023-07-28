@@ -29,7 +29,7 @@ if ($request) GetCookie();
 function GetCookie() {
   if ($request.url.indexOf('queryUserInfoSeven') > -1) {
     const cookie = $request.headers.Cookie;
-    console.log($request.headers);
+    console.log(JSON.stringify($request.headers, null, 2));  // pretty-print JSON
     let encoder = new TextEncoder();
     let writeCookie = encoder.encode(cookie);
     if ($iCloud.writeFile(writeCookie, "10010/cookie.txt")) {
@@ -40,3 +40,4 @@ function GetCookie() {
   }
 }
 $done();
+
