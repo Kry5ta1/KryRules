@@ -35,7 +35,7 @@ function GetCookie() {
     $.log($request.headers);
     if (cookie && cookie.indexOf('JSESSIONID') > -1) {
       $.write(cookie, 'cookie');
-      $.notify('中国联通','cookie 写入成功');
+      $.notify('中国联通', 'cookie 写入成功');
     }
   }
   $.done();
@@ -73,8 +73,8 @@ function HTTP(
     options =
       typeof options === 'string'
         ? {
-            url: options,
-          }
+          url: options,
+        }
         : options;
     const baseURL = defaultOptions.baseURL;
     if (baseURL && !URL_REGEX.test(options.url || '')) {
@@ -90,9 +90,9 @@ function HTTP(
     const timeout = options.timeout;
     const events = {
       ...{
-        onRequest: () => {},
+        onRequest: () => { },
         onResponse: (resp) => resp,
-        onTimeout: () => {},
+        onTimeout: () => { },
       },
       ...options.events,
     };
@@ -140,20 +140,20 @@ function HTTP(
     let timeoutid;
     const timer = timeout
       ? new Promise((_, reject) => {
-          timeoutid = setTimeout(() => {
-            events.onTimeout();
-            return reject(
-              `${method} URL: ${options.url} exceeds the timeout ${timeout} ms`,
-            );
-          }, timeout);
-        })
+        timeoutid = setTimeout(() => {
+          events.onTimeout();
+          return reject(
+            `${method} URL: ${options.url} exceeds the timeout ${timeout} ms`,
+          );
+        }, timeout);
+      })
       : null;
 
     return (timer
       ? Promise.race([timer, worker]).then((res) => {
-          clearTimeout(timeoutid);
-          return res;
-        })
+        clearTimeout(timeoutid);
+        return res;
+      })
       : worker
     ).then((resp) => events.onResponse(resp));
   }
@@ -276,7 +276,11 @@ function API(name = 'untitled', debug = false) {
           return $persistentStore.write(data, key);
         }
         if (isQX) {
-          return $prefs.setValueForKey(data, key);
+          if ($iCloud.writeFile(data, "10010/cookie.txt")) {
+            console.log("Cookie 写入OK");
+          } else {
+            console.log("Cookie 写入NO");
+          }
         }
         if (isNode) {
           this.root[key] = data;
