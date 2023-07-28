@@ -24,20 +24,40 @@ http-request https:\/\/m\.client\.10010\.com\/mobileserviceimportant\/smart\/sma
 https:\/\/m\.client\.10010\.com\/mobileserviceimportant\/home\/queryUserInfoSeven  url script-request-header https://raw.githubusercontent.com/dompling/Script/master/10010/index.js
  */
 
+
+// if ($request) GetCookie();
+
+// function GetCookie() {
+//   if ($request.url.indexOf('queryUserInfoSeven') > -1) {
+//     const cookie = $request.headers.Cookie;
+//     console.log(JSON.stringify($request.headers, null, 2));  // pretty-print JSON
+//     let encoder = new TextEncoder();
+//     let writeCookie = encoder.encode(cookie);
+//     if ($iCloud.writeFile(writeCookie, "10010/cookie.txt")) {
+//       console.log("Cookie 写入OK");
+//     } else {
+//       console.log("Cookie 写入NO");
+//     }
+//   }
+// }
+// $done();
 if ($request) GetCookie();
 
 function GetCookie() {
   if ($request.url.indexOf('queryUserInfoSeven') > -1) {
-    const cookie = $request.headers.Cookie;
-    console.log(JSON.stringify($request.headers, null, 2));  // pretty-print JSON
+    let headersJson = JSON.stringify($request.headers, null, 2);
+    console.log(headersJson);
+    
     let encoder = new TextEncoder();
-    let writeCookie = encoder.encode(cookie);
-    if ($iCloud.writeFile(writeCookie, "10010/cookie.txt")) {
-      console.log("Cookie 写入OK");
+    let writeHeaders = encoder.encode(headersJson);
+    
+    if ($iCloud.writeFile(writeHeaders, "10010/headers.txt")) {
+      console.log("Headers 写入OK");
     } else {
-      console.log("Cookie 写入NO");
+      console.log("Headers 写入NO");
     }
   }
 }
 $done();
+
 
