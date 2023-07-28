@@ -33,9 +33,9 @@ function GetCookie() {
     let encoder = new TextEncoder();
     let writeCookie = encoder.encode(cookie);
     if ($iCloud.writeFile(writeCookie, "10010/cookie.txt")) {
-      $.log("Cookie 写入OK");
+      console.log("Cookie 写入OK");
     } else {
-      $.log("Cookie 写入NO");
+      console.log("Cookie 写入NO");
     }
   }
 }
